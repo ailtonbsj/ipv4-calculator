@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IP v4 Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding-top: 5rem;
+        }
+        
+        input {
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">IPv4 Calculator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="ip">IP</label>
+                    <input type="text" class="form-control" id="ip" placeholder="0.0.0.0">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="cidr">Mascara (CIDR)</label>
+                    <input type="text" class="form-control" id="cidr" placeholder="24" value="24">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="mask">Mascara</label>
+                    <input type="text" class="form-control" id="mask" placeholder="0.0.0.0" readonly>
+                    <input type="text" class="form-control" id="bmask" placeholder="00000000.00000000.00000000.00000000" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="net">Rede</label>
+                    <input type="text" class="form-control" id="net" placeholder="0.0.0.0" readonly>
+                    <input type="text" class="form-control" id="bnet" placeholder="00000000.00000000.00000000.00000000" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="broad">Broadcast</label>
+                    <input type="text" class="form-control" id="broad" placeholder="0.0.0.0" readonly>
+                    <input type="text" class="form-control" id="bbroad" placeholder="00000000.00000000.00000000.00000000" readonly>
+                </div>
+
+
+                <div class="form-group col-md-4">
+                    <label for="initial">Range Inicial</label>
+                    <input type="text" class="form-control" id="initial" placeholder="0.0.0.0" readonly>
+                    <input type="text" class="form-control" id="binitial" placeholder="00000000.00000000.00000000.00000000" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="final">Range Final</label>
+                    <input type="text" class="form-control" id="final" placeholder="0.0.0.0" readonly>
+                    <input type="text" class="form-control" id="bfinal" placeholder="00000000.00000000.00000000.00000000" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="ipcomum">IP</label>
+                    <input type="text" class="form-control" id="ipcomum" placeholder="0.0.0.0" readonly>
+                    <input type="text" class="form-control" id="bipcomum" placeholder="00000000.00000000.00000000.00000000" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="number">Número de Hosts</label>
+                    <input type="text" class="form-control" id="numhost" placeholder="0" readonly>
+                </div>
+            </div>
+        </form>
+    </main>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="https://ailtonbsj.github.io/"> ailtonbsj.github.io</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+</body>
+<script src="index.js"></script>
+
+</html>

@@ -1,11 +1,3 @@
-let input = "200.10.150.1/25";
-
-let [ip, cidr] = input.split("/");
-let octets = ip.split(".");
-let binaryMask = '1'.repeat(cidr).padEnd(32, '0');
-let binaryOctet = octets.map(octet => parseInt(octet, 10).toString(2).padStart(8, '0'));
-let binaryIp = binaryOctet.join("");
-
 function binaryToOctet(binInput) {
     return binInput.match(/.{1,8}/g).join(".");
 }
@@ -40,17 +32,67 @@ function getBroadcast(binIp, binMask) {
     return binaryToDecimalOctet(ans);
 }
 
+function getRange(binIp, binMask) {
+    let compMask = binMask.replace(/[^1]/g, 'X').replace(/1/g, '0').replace(/X/g, '1');
+    let lastFrag = (parseInt(compMask, 2) - 1).toString(2).padStart(32, '0');
+    let ans = "";
+    for (let i = 0; i < 32; i++) {
+        ans += binMask[i] == '1' ? binIp[i] : lastFrag[i];
+    }
+    let range1 = ans;
+    ans = "";
+    let firstFrag = '1'.padStart(32, '0');
+    for (let i = 0; i < 32; i++) {
+        ans += binMask[i] == '1' ? binIp[i] : firstFrag[i];
+    }
+    let range0 = ans;
+    return [binaryToDecimalOctet(range0), binaryToDecimalOctet(range1)];
+}
 
-console.log("IP:");
-console.log(binaryToDecimalOctet(binaryIp) + '/' + binaryToCIDR(binaryMask));
-console.log("MASK:");
-console.log(binaryToDecimalOctet(binaryMask));
-console.log("NUMBER OF HOSTS (WITHOUT NET AND BROAD):");
-console.log(numberOfHosts(cidr));
-console.log("NETWORK:");
-console.log(getNetwork(binaryIp, binaryMask));
-console.log("BROADCAST:");
-console.log(getBroadcast(binaryIp, binaryMask));
-console.log("IP AND MASK IN BINARY:");
-console.log(binaryToOctet(binaryIp));
-console.log(binaryToOctet(binaryMask));
+function octectToBinary(octets) {
+    octets = octets.split(".");
+    let binaryOctet = octets.map(octet => parseInt(octet, 10).toString(2).padStart(8, '0'));
+    return binaryOctet.join("");
+}
+
+function onpressed() {
+    let ip = document.querySelector("#ip").value;
+    let cidr = document.querySelector("#cidr").value;
+    let mask = document.querySelector("#mask");
+    let bmask = document.querySelector("#bmask");
+    let net = document.querySelector("#net");
+    let bnet = document.querySelector("#bnet");
+    let broad = document.querySelector("#broad");
+    let bbroad = document.querySelector("#bbroad");
+    let initial = document.querySelector("#initial");
+    let binitial = document.querySelector("#binitial");
+    let final = document.querySelector("#final");
+    let bfinal = document.querySelector("#bfinal");
+    let ipc = document.querySelector("#ipcomum");
+    let bipc = document.querySelector("#bipcomum");
+    let numhost = document.querySelector("#numhost");
+
+    let binaryMask = '1'.repeat(cidr).padEnd(32, '0');
+    let binaryIp = octectToBinary(ip);
+    let range = getRange(binaryIp, binaryMask);
+
+    mask.value = binaryToDecimalOctet(binaryMask);
+    bmask.value = binaryToOctet(binaryMask);
+    net.value = getNetwork(binaryIp, binaryMask);
+    bnet.value = binaryToOctet(octectToBinary(getNetwork(binaryIp, binaryMask)));
+    broad.value = getBroadcast(binaryIp, binaryMask);
+    bbroad.value = binaryToOctet(octectToBinary(getBroadcast(binaryIp, binaryMask)));
+    initial.value = range[0];
+    final.value = range[1];
+    binitial.value = binaryToOctet(octectToBinary(range[0]));
+    bfinal.value = binaryToOctet(octectToBinary(range[1]));
+    ipc.value = ip;
+    bipc.value = binaryToOctet(binaryIp);
+    numhost.value = numberOfHosts(cidr);
+}
+
+function main() {
+    document.querySelector("#ip").onkeyup = onpressed;
+    document.querySelector("#cidr").onkeyup = onpressed;
+}
+window.onload = main;
