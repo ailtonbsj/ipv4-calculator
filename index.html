@@ -132,24 +132,30 @@
     <!-- Modal Structure -->
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-          <div class="modal-content w3-animate-bottom">
-            <div class="modal-body">
-                <h4>Instalar o App</h4>
-                <p>Clique em instalar para colocar o app na sua Tela Inicial.</p>
+            <div class="modal-content w3-animate-bottom">
+                <div class="modal-body">
+                    <h4>Instalar o App</h4>
+                    <p>Clique em instalar para colocar o app na sua Tela Inicial.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-default btn-install" data-dismiss="modal">Instalar</button>
+                </div>
             </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-default btn-install" data-dismiss="modal">Instalar</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
     <!-- Modal Trigger -->
-    <button id="openToInstall" class="btn btn-block btn-default footer__btn d-none" data-toggle="modal" data-target="#myModal2">Open to install</button>
+    <button id="openToInstall" class="btn btn-block btn-default footer__btn d-none" data-toggle="modal"
+        data-target="#myModal2">Open to install</button>
 </body>
 <script src="index.js"></script>
 <script>
+    var btnOpenToInstall;
+    document.addEventListener('DOMContentLoaded', function () {
+        btnOpenToInstall = document.querySelectorAll('#openToInstall')[0];
+    });
+
     if (navigator.serviceWorker != null) {
         navigator.serviceWorker.register('sw.js')
             .then(function (registration) {
@@ -179,5 +185,4 @@
         });
     });
 </script>
-
 </html>
