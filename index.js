@@ -1,30 +1,35 @@
-function binaryToOctet(binInput) {
+function binaryToOctet (binInput) {
     return binInput.match(/.{1,8}/g).join(".");
 }
 
-function binaryToDecimalOctet(binInput) {
+function binaryToDecimalOctet (binInput) {
     return binInput.match(/.{1,8}/g)
-        .map(octet => parseInt(octet, 2))
+        .map(octet => {
+            const res = parseInt(octet, 2)
+            return isNaN(res) ? 0 : res
+        })
         .join(".");
 }
 
-function binaryToCIDR(binInput) {
+function binaryToCIDR (binInput) {
     return binInput.replace(/[^1]/g, '').length;
 }
 
-function numberOfHosts(cidr) {
+function numberOfHosts (cidr) {
     return 2 ** (32 - cidr) - 2;
 }
 
-function getNetwork(binIp, binMask) {
-    let ans = "";
-    for (let i = 0; i < 32; i++) {
-        ans += binMask[i] == '1' ? binIp[i] : '0';
-    }
-    return binaryToDecimalOctet(ans);
+function getNetwork (binIp, binMask) {
+    if (binIp.length === 32 && binMask.length === 32) {
+        let ans = "";
+        for (let i = 0; i < 32; i++) {
+            ans += binMask[i] == '1' ? binIp[i] : '0';
+        }
+        return binaryToDecimalOctet(ans);
+    } else return "0.0.0.0";
 }
 
-function getBroadcast(binIp, binMask) {
+function getBroadcast (binIp, binMask) {
     let ans = "";
     for (let i = 0; i < 32; i++) {
         ans += binMask[i] == '1' ? binIp[i] : '1';
@@ -32,7 +37,7 @@ function getBroadcast(binIp, binMask) {
     return binaryToDecimalOctet(ans);
 }
 
-function getRange(binIp, binMask) {
+function getRange (binIp, binMask) {
     let compMask = binMask.replace(/[^1]/g, 'X').replace(/1/g, '0').replace(/X/g, '1');
     let lastFrag = (parseInt(compMask, 2) - 1).toString(2).padStart(32, '0');
     let ans = "";
@@ -49,13 +54,17 @@ function getRange(binIp, binMask) {
     return [binaryToDecimalOctet(range0), binaryToDecimalOctet(range1)];
 }
 
-function octectToBinary(octets) {
+function octectToBinary (octets) {
     octets = octets.split(".");
-    let binaryOctet = octets.map(octet => parseInt(octet, 10).toString(2).padStart(8, '0'));
+    let binaryOctet = octets.map(octet => {
+        const res = parseInt(octet, 10)
+        const octetToTen = isNaN(res) ? 0 : res
+        return octetToTen.toString(2).padStart(8, '0')
+    });
     return binaryOctet.join("");
 }
 
-function onpressed() {
+function onpressed () {
     let ip = document.querySelector("#ip").value;
     let cidr = document.querySelector("#cidr").value;
     let mask = document.querySelector("#mask");
@@ -91,7 +100,7 @@ function onpressed() {
     numhost.value = numberOfHosts(cidr);
 }
 
-function main() {
+function main () {
     document.querySelector("#ip").onkeyup = onpressed;
     document.querySelector("#cidr").onkeyup = onpressed;
 }

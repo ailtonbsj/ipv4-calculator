@@ -1,0 +1,16 @@
+{
+    "name": "IPv4 Calculator",
+    "short_name": "IPv4 Calc",
+    "display": "standalone",
+    "start_url": "https://ailtonbsj.github.io/ipv4-calculator/",
+    "start_url_bkp": "/",
+    "theme_color": "#313131",
+    "background_color": "#313131",
+    "icons": [
+      {
+        "src": "icons/launch512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }

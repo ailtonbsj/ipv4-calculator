@@ -5,16 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="manifest" href="manifest.json" />
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='application-name' content='IPv4 Calculator'>
+
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+    <meta name='apple-mobile-web-app-title' content='IPv4 Calculator'>
+    <link rel="icon" href="icons/launch512.png" type="image/png" />
+    <link rel="apple-touch-icon" href="icons/launch512.png">
+    <link rel="apple-touch-icon" href="icons/launch512.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/launch512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/launch512.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/launch512.png">
+    <link rel="apple-touch-startup-image" href="icons/launch512.png">
     <title>IP v4 Calculator</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
     <style>
         body {
             padding-top: 5rem;
         }
-        
+
         input {
             font-family: monospace;
         }
@@ -24,9 +45,10 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="#">IPv4 Calculator</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
@@ -54,34 +76,40 @@
                 <div class="form-group col-md-4">
                     <label for="mask">Mascara</label>
                     <input type="text" class="form-control" id="mask" placeholder="0.0.0.0" readonly>
-                    <input type="text" class="form-control" id="bmask" placeholder="00000000.00000000.00000000.00000000" readonly>
+                    <input type="text" class="form-control" id="bmask" placeholder="00000000.00000000.00000000.00000000"
+                        readonly>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="net">Rede</label>
                     <input type="text" class="form-control" id="net" placeholder="0.0.0.0" readonly>
-                    <input type="text" class="form-control" id="bnet" placeholder="00000000.00000000.00000000.00000000" readonly>
+                    <input type="text" class="form-control" id="bnet" placeholder="00000000.00000000.00000000.00000000"
+                        readonly>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="broad">Broadcast</label>
                     <input type="text" class="form-control" id="broad" placeholder="0.0.0.0" readonly>
-                    <input type="text" class="form-control" id="bbroad" placeholder="00000000.00000000.00000000.00000000" readonly>
+                    <input type="text" class="form-control" id="bbroad"
+                        placeholder="00000000.00000000.00000000.00000000" readonly>
                 </div>
 
 
                 <div class="form-group col-md-4">
                     <label for="initial">Range Inicial</label>
                     <input type="text" class="form-control" id="initial" placeholder="0.0.0.0" readonly>
-                    <input type="text" class="form-control" id="binitial" placeholder="00000000.00000000.00000000.00000000" readonly>
+                    <input type="text" class="form-control" id="binitial"
+                        placeholder="00000000.00000000.00000000.00000000" readonly>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="final">Range Final</label>
                     <input type="text" class="form-control" id="final" placeholder="0.0.0.0" readonly>
-                    <input type="text" class="form-control" id="bfinal" placeholder="00000000.00000000.00000000.00000000" readonly>
+                    <input type="text" class="form-control" id="bfinal"
+                        placeholder="00000000.00000000.00000000.00000000" readonly>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="ipcomum">IP</label>
                     <input type="text" class="form-control" id="ipcomum" placeholder="0.0.0.0" readonly>
-                    <input type="text" class="form-control" id="bipcomum" placeholder="00000000.00000000.00000000.00000000" readonly>
+                    <input type="text" class="form-control" id="bipcomum"
+                        placeholder="00000000.00000000.00000000.00000000" readonly>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="number">Número de Hosts</label>
@@ -101,7 +129,55 @@
 
     </footer>
     <!-- Footer -->
+    <!-- Modal Structure -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content w3-animate-bottom">
+            <div class="modal-body">
+                <h4>Instalar o App</h4>
+                <p>Clique em instalar para colocar o app na sua Tela Inicial.</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-default btn-install" data-dismiss="modal">Instalar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Modal Trigger -->
+    <button id="openToInstall" class="btn btn-block btn-default footer__btn d-none" data-toggle="modal" data-target="#myModal2">Open to install</button>
 </body>
 <script src="index.js"></script>
+<script>
+    if (navigator.serviceWorker != null) {
+        navigator.serviceWorker.register('sw.js')
+            .then(function (registration) {
+                console.log('Registered events at scope: ', registration.scope);
+            });
+    }
+
+    let deferredPrompt;
+    const btnInstall = document.querySelector('.btn-install');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        btnOpenToInstall.click();
+
+        btnInstall.addEventListener('click', (e) => {
+            // maybe the click need to be here!
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the A2HS prompt');
+                } else {
+                    console.log('User dismissed the A2HS prompt');
+                }
+                deferredPrompt = null;
+            });
+        });
+    });
+</script>
 
 </html>
